@@ -26,5 +26,5 @@ class Post < ActiveRecord::Base
     author = Post.find_or_create_by(name: name)
     self.author = author
   end
-  
+
 end
