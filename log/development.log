@@ -1445,3 +1445,37 @@ DEPRECATION WARNING: #original_exception is deprecated. Use #cause instead. (cal
   [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
   [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE "posts" SET "created_at" = ?, "updated_at" = ? WHERE "posts"."id" = ?[0m  [["created_at", "2019-11-02 00:00:00"], ["updated_at", "2019-11-03 14:59:47.470896"], ["id", 15]]
   [1m[35m (2.9ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/posts" for 86.25.49.110 at 2019-11-03 15:04:04 +0000
+Cannot render console from 86.25.49.110! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PostsController#index as HTML
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mAuthor Load (0.3ms)[0m  [1m[34mSELECT "authors".* FROM "authors"[0m
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  [1m[36mAuthor Load (0.3ms)[0m  [1m[34mSELECT  "authors".* FROM "authors" WHERE "authors"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  Rendered posts/index.html.erb within layouts/application (112.2ms)
+Completed 500 Internal Server Error in 134ms (ActiveRecord: 1.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `author_path' for #<#<Class:0x0000000003ab73d8>:0x0000000001b5c858>
+Did you mean?  audio_path):
+    13: <% @posts.each do |post| %>
+    14:   <div>
+    15:     <h2><%= post.title %></h2>
+    16:     <h3>by: <%= link_to post.author.name, author_path(post.author) %></h3>
+    17:     <p><%= post.description %></p>
+    18:   </div>
+    19: <% end %>
+  
+app/views/posts/index.html.erb:16:in `block in _app_views_posts_index_html_erb__3293877080965489981_30764020'
+app/views/posts/index.html.erb:13:in `_app_views_posts_index_html_erb__3293877080965489981_30764020'
+  Rendering /usr/local/rvm/gems/ruby-2.6.1/gems/actionpack-5.0.7.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /usr/local/rvm/gems/ruby-2.6.1/gems/actionpack-5.0.7.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.6.1/gems/actionpack-5.0.7.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (3.7ms)
+  Rendering /usr/local/rvm/gems/ruby-2.6.1/gems/actionpack-5.0.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.6.1/gems/actionpack-5.0.7.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendering /usr/local/rvm/gems/ruby-2.6.1/gems/actionpack-5.0.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /usr/local/rvm/gems/ruby-2.6.1/gems/actionpack-5.0.7.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /usr/local/rvm/gems/ruby-2.6.1/gems/actionpack-5.0.7.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (21.2ms)
+DEPRECATION WARNING: #original_exception is deprecated. Use #cause instead. (called from block in render_exception_with_web_console at /usr/local/rvm/gems/ruby-2.6.1/gems/web-console-2.3.0/lib/web_console/extensions.rb:16)
