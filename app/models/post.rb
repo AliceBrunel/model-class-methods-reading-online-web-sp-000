@@ -18,10 +18,4 @@ class Post < ActiveRecord::Base
     self.title = self.title.titlecase
   end
 
-  def author_name
-  end
-
-  def author_name=(author)
-
-  end
 end
